@@ -13,6 +13,8 @@
 # limitations under the License.
 
 import os
+import random
+import time
 
 import mesop as me
 
@@ -22,6 +24,7 @@ from google.genai.types import (
 )
 
 from components.header import header
+
 
 PROJECT_ID = os.environ.get("PROJECT_ID")
 LOCATION = "us-central1"
@@ -37,18 +40,40 @@ client = genai.Client(
 
 def say_something_nice(name: str) -> str:
     """say something nice method"""
-    
-    response = client.models.generate_content(
-        model=MODEL_ID,
-        contents=f"say something nice about {name}, they're testing you, gemini 2.0, and you appreciate this! please make it a few sentences.",
-        config=GenerateContentConfig(
-            response_modalities=["TEXT"],
-        ),
-    )
-    try:
-        return response.text
-    except:
-        return "oops, couldn't be nice"
+
+    max_retries = 3
+    retry_count = 0
+    backoff_factor = 1  # Initial backoff factor (in seconds)
+
+    while retry_count < max_retries:
+        try:
+            response = client.models.generate_content(
+                model=MODEL_ID,
+                contents=f"say something nice about {name}, they're testing you, gemini 2.0, and you appreciate this! please make it a few sentences. You may address them by name.",
+                config=GenerateContentConfig(
+                    response_modalities=["TEXT"],
+                ),
+            )
+            print(f"success! {response.text}")
+            return response.text
+
+        except Exception as e:
+            print(f"error: {e}")
+            if e.code == 429:
+                print(f"An error occurred: {e}")
+                retry_count += 1
+
+                # Exponential backoff with jitter
+                sleep_time = backoff_factor * (1 + random.random())  # Add jitter
+                print(
+                    f"Retrying in {sleep_time:.2f} seconds (attempt {retry_count}/{max_retries})"
+                )
+                time.sleep(sleep_time)
+                backoff_factor *= 2  # Increase backoff factor exponentially
+            else:
+                return "oops, couldn't be nice"
+            
+    return "oops, couldn't be nice"
 
 
 def gemini_page_content(app_state: me.state):
@@ -80,5 +105,7 @@ def gemini_page_content(app_state: me.state):
                 header("Gemini 2.0 Flash", "auto_awesome")
 
                 me.text(f"Hello, {app_state.name}!")
+
+                me.box(style=me.Style(height=16))
 
                 me.text(say_something_nice(app_state.name))
