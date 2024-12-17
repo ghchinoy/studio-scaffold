@@ -4,8 +4,8 @@ from components.header import header
 
 
 def another_page_content(app_state: me.state):
-    """ Another Mesop Page """
-    
+    """Another Mesop Page"""
+
     with me.box(
         style=me.Style(
             display="flex",
@@ -32,4 +32,3 @@ def another_page_content(app_state: me.state):
                 header("Another Page", "looks_two")
 
                 me.text(f"Hello, {app_state.name}!")
-               

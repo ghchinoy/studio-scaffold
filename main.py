@@ -4,6 +4,7 @@ from state.state import AppState
 from components.page_scaffold import page_scaffold
 from pages.home import home_page_content
 from pages.another import another_page_content
+from pages.gemini2 import gemini_page_content
 
 
 def on_load(e: me.LoadEvent):  # pylint: disable=unused-argument
@@ -33,3 +34,15 @@ def another_page():
     state = me.state(AppState)
     with page_scaffold():  # pylint: disable=not-context-manager
         another_page_content(state)
+
+
+@me.page(
+    path="/gemini",
+    title="Scaffold - Gemini",
+    on_load=on_load,
+)
+def gemini_page():
+    """Gemini 2.0 Flash Page"""
+    state = me.state(AppState)
+    with page_scaffold():  # pylint: disable=not-context-manager
+        gemini_page_content(state)

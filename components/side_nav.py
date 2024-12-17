@@ -12,6 +12,7 @@ from components.styles import (
 page_json = [
     {"display": "Home", "icon": "home", "route": "/"},
     {"display": "Another", "icon": "looks_two", "route": "/another"},
+    {"display": "Gemini", "icon": "auto_awesome", "route": "/gemini"},
 ]
 
 
