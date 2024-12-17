@@ -2,7 +2,6 @@ import mesop as me
 
 from state.state import AppState
 
-from components.header import header
 from components.side_nav import sidenav
 from components.styles import (
     SIDENAV_MAX_WIDTH,
