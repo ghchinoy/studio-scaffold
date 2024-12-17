@@ -1,10 +1,11 @@
 import mesop as me
 
-from state.state import AppState
 from components.header import header
 
 
 def another_page_content(app_state: me.state):
+    """ Another Mesop Page """
+    
     with me.box(
         style=me.Style(
             display="flex",

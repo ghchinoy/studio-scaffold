@@ -15,12 +15,14 @@ page_json = [
 ]
 
 
-def on_sidenav_menu_click(e: me.ClickEvent):
+def on_sidenav_menu_click(e: me.ClickEvent):  # pylint: disable=unused-argument
+    """Side navigation menu click handler"""
     state = me.state(AppState)
     state.sidenav_open = not state.sidenav_open
 
 
 def navigate_to(e: me.ClickEvent):
+    """navigate to a specific page"""
     s = me.state(AppState)
     idx = int(e.key)
     print(f"idx: {idx}")
@@ -35,6 +37,7 @@ def navigate_to(e: me.ClickEvent):
 
 
 def sidenav(current_page: str):
+    """Render side navigation"""
     app_state = me.state(AppState)
     print(f"received current page: {current_page}")
 
@@ -81,11 +84,11 @@ def menu_item(
     key: int,
     icon: str,
     text: str,
-    min: bool = True,
+    minimized: bool = True,
     content_style: me.Style = DEFAULT_MENU_STYLE,
 ):
     """render menu item"""
-    if min:  # minimized
+    if minimized:  # minimized
         with me.box(
             style=me.Style(
                 display="flex",

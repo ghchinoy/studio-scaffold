@@ -6,6 +6,7 @@ from components.header import header
 
 @me.stateclass
 class PageState:
+    """ Local Page State"""
     temp_name: str = ""
 
 
@@ -15,7 +16,7 @@ def on_blur_set_name(e: me.InputBlurEvent):
     state.temp_name = e.value
 
 
-def on_click_change_name(e: me.ClickEvent):
+def on_click_change_name(e: me.ClickEvent):  # pylint: disable=unused-argument
     """change name button handler"""
     state = me.state(PageState)
     app_state = me.state(AppState)
@@ -24,6 +25,7 @@ def on_click_change_name(e: me.ClickEvent):
 
 
 def home_page_content(app_state: me.state):
+    """Home Page"""
     with me.box(
         style=me.Style(
             display="flex",
