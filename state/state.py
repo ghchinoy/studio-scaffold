@@ -5,5 +5,5 @@ import mesop as me
 class AppState:
     """Mesop Application State"""
     sidenav_open: bool = False
-    
+
     name: str = "no name"
