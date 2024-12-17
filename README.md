@@ -4,9 +4,12 @@
 Mesop scaffold for Studio style apps.
 
 This is an example of a multi-page Mesop UX application, where:
+
 * individual pages have their own state management while also having access to an application state
 * Mesop custom components are used to facility app scaffolding, with side navigation and header
 
+
+![](./assets/example.gif)
 
 
 ## Prerequisites
