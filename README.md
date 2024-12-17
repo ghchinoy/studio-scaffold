@@ -1,4 +1,6 @@
-# Cloud AAIE Studio Scaffold for Mesop
+# Studio Scaffold for Mesop
 
 
-Mesop scaffold for AAIE Studio apps
+Mesop scaffold for Studio style apps
+
+
