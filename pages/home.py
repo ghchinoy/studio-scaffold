@@ -50,13 +50,22 @@ def home_page_content(app_state: me.state):
                 header("Home Page", "home")
 
                 me.text(f"Hello, {app_state.name}!")
-                me.input(
-                    label="change the name",
-                    on_blur=on_blur_set_name,
-                    on_enter=on_click_change_name,
-                )
-                me.button(
-                    label="change",
-                    type="flat",
-                    on_click=on_click_change_name,
-                )
+                me.box(style=me.Style(height=16))
+                with me.box(
+                    style=me.Style(
+                        display="flex",
+                        flex_direction="row",
+                        gap=5,
+                        align_items="center",
+                    )
+                ):
+                    me.input(
+                        label="change the name",
+                        on_blur=on_blur_set_name,
+                        on_enter=on_click_change_name,
+                    )
+                    me.button(
+                        label="change",
+                        type="flat",
+                        on_click=on_click_change_name,
+                    )

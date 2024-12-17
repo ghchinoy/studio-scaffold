@@ -37,6 +37,7 @@ def navigate_to(e: me.ClickEvent):
 def sidenav(current_page: str):
     app_state = me.state(AppState)
     print(f"received current page: {current_page}")
+
     with me.sidenav(
         opened=True,
         style=me.Style(
@@ -68,7 +69,7 @@ def sidenav(current_page: str):
                         with me.tooltip(message="Expand menu"):
                             me.icon(icon="menu")
                 if app_state.sidenav_open:
-                    me.text("APP SCAFFOLD", style=_FANCY_TEXT_GRADIENT)
+                    me.text("STUDIO", style=_FANCY_TEXT_GRADIENT)
             me.box(style=me.Style(height=16))
             for idx, page in enumerate(page_json):
                 menu_item(
