@@ -28,7 +28,7 @@ def another_page_content(app_state: me.state):
                     flex_direction="column",
                 )
             ):
-                header("Another Page")
+                header("Another Page", "looks_two")
 
                 me.text(f"Hello, {app_state.name}!")
                

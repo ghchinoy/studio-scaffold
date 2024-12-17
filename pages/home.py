@@ -47,7 +47,7 @@ def home_page_content(app_state: me.state):
                     flex_direction="column",
                 )
             ):
-                header("Home Page")
+                header("Home Page", "home")
 
                 me.text(f"Hello, {app_state.name}!")
                 me.input(

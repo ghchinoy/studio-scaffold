@@ -2,7 +2,7 @@ import mesop as me
 
 
 @me.component
-def header(title: str):
+def header(title: str, icon: str):
     with me.box(
         style=me.Style(
             display="flex",
@@ -12,7 +12,7 @@ def header(title: str):
         with me.box(
             style=me.Style(display="flex", flex_direction="row", gap=5)
         ):
-            me.icon(icon="auto_fix_high")
+            me.icon(icon=icon)
             me.text(
                 title,
                 type="headline-5",
