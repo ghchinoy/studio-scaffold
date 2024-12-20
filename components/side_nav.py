@@ -37,10 +37,11 @@ def navigate_to(e: me.ClickEvent):
     yield
 
 
+@me.component
 def sidenav(current_page: str):
     """Render side navigation"""
     app_state = me.state(AppState)
-    print(f"received current page: {current_page}")
+    #print(f"received current page: {current_page}")
 
     with me.sidenav(
         opened=True,

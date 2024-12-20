@@ -3,7 +3,7 @@ import mesop as me
 from state.state import AppState
 from components.page_scaffold import page_scaffold
 from pages.home import home_page_content
-from pages.another import another_page_content
+from pages.another import another_content
 from pages.gemini2 import gemini_page_content
 
 
@@ -31,9 +31,7 @@ def home_page():
 )
 def another_page():
     """Another Page"""
-    state = me.state(AppState)
-    with page_scaffold():  # pylint: disable=not-context-manager
-        another_page_content(state)
+    another_content(me.state(AppState))        
 
 
 @me.page(
