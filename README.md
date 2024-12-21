@@ -36,3 +36,6 @@ Start the app to explore
 mesop main.py
 ```
 
+# Disclaimer
+
+This is not an official Google project
