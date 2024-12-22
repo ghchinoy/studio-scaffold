@@ -11,9 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 import mesop as me
-
 from state.state import AppState
 from components.header import header
 
@@ -29,14 +27,12 @@ def on_blur_set_name(e: me.InputBlurEvent):
     state = me.state(PageState)
     state.temp_name = e.value
 
-
 def on_click_change_name(e: me.ClickEvent):  # pylint: disable=unused-argument
     """change name button handler"""
     state = me.state(PageState)
     app_state = me.state(AppState)
     app_state.name = state.temp_name
     yield
-
 
 def home_page_content(app_state: me.state):
     """Home Page"""
