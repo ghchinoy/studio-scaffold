@@ -12,9 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 import mesop as me
-
 from state.state import AppState
-from components.styles import (
+from styles.styles import (
     SIDENAV_MAX_WIDTH,
     SIDENAV_MIN_WIDTH,
     _FANCY_TEXT_GRADIENT,
@@ -28,12 +27,10 @@ page_json = [
     {"display": "Gemini", "icon": "auto_awesome", "route": "/gemini"},
 ]
 
-
 def on_sidenav_menu_click(e: me.ClickEvent):  # pylint: disable=unused-argument
     """Side navigation menu click handler"""
     state = me.state(AppState)
     state.sidenav_open = not state.sidenav_open
-
 
 def navigate_to(e: me.ClickEvent):
     """navigate to a specific page"""
@@ -48,7 +45,6 @@ def navigate_to(e: me.ClickEvent):
     s.current_page = page["route"]
     me.navigate(s.current_page)
     yield
-
 
 @me.component
 def sidenav(current_page: str):
@@ -93,7 +89,6 @@ def sidenav(current_page: str):
                 menu_item(
                     idx, page["icon"], page["display"], not app_state.sidenav_open
                 )
-
 
 def menu_item(
     key: int,
