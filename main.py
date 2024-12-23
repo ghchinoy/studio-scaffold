@@ -45,7 +45,7 @@ def home_page():
 )
 def another_page():
     """Another Page"""
-    another_content(me.state(AppState))        
+    another_content(me.state(AppState))
 
 
 @me.page(
