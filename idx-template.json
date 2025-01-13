@@ -1,6 +1,6 @@
 {
-    "name": "Studio Scaffold",
+    "name": "Studio Scaffold in Mesop",
     "description": "A template for a Mesop application using the Studio Scaffold",
-    "icon": "https://www.gstatic.com/images/branding/productlogos/idx/v1/192px.svg",
+    "icon": "https://google.github.io/mesop/assets/logo.png",
     "params": []
   }
