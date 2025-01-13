@@ -1,3 +1,6 @@
 mesop
 google-genai
 tenacity
+Flask
+gunicorn
+Werkzeug
