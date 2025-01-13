@@ -24,7 +24,8 @@ from styles.styles import (
 page_json = [
     {"display": "Home", "icon": "home", "route": "/"},
     {"display": "Another", "icon": "looks_two", "route": "/another"},
-    {"display": "Gemini", "icon": "auto_awesome", "route": "/gemini"},
+    #{"display": "Gemini", "icon": "auto_awesome", "route": "/gemini"},
+    #{"id": 10, "display": "Settings", "icon": "settings", "route": "/settings", "align": "bottom", },
 ]
 
 def on_sidenav_menu_click(e: me.ClickEvent):  # pylint: disable=unused-argument
@@ -89,6 +90,15 @@ def sidenav(current_page: str):
                 menu_item(
                     idx, page["icon"], page["display"], not app_state.sidenav_open
                 )
+            # settings & theme toggle
+            with me.box(style=MENU_BOTTOM):
+                theme_toggle_icon(
+                    9,
+                    "light_mode",
+                    "Theme",
+                    not app_state.sidenav_open,
+                )
+                #menu_item(10, "settings", "Settings", not app_state.sidenav_open)
 
 def menu_item(
     key: int,
@@ -132,3 +142,68 @@ def menu_item(
             ):
                 me.icon(icon=icon)
                 me.text(text)
+
+
+def toggle_theme(e: me.ClickEvent):  # pylint: disable=unused-argument
+    """Toggle theme event"""
+    s = me.state(AppState)
+    if me.theme_brightness() == "light":
+        me.set_theme_mode("dark")
+        s.theme_mode = "dark"
+    else:
+        me.set_theme_mode("light")
+        s.theme_mode = "light"
+
+
+def theme_toggle_icon(key: int, icon: str, text: str, min: bool = True):
+    """Theme toggle icon"""
+    # THEME_TOGGLE_STYLE = me.Style(position="absolute", bottom=50, align_content="left")
+    if min:  # minimized
+        with me.box(
+            style=me.Style(
+                display="flex",
+                flex_direction="row",
+                gap=5,
+                align_items="center",
+            ),
+        ):
+            with me.content_button(
+                key=str(key),
+                on_click=toggle_theme,
+                # style=THEME_TOGGLE_STYLE,
+                type="icon",
+            ):
+                with me.tooltip(message=text):
+                    me.icon(
+                        "light_mode" if me.theme_brightness() == "dark" else "dark_mode"
+                    )
+
+    else:  # expanded
+        with me.content_button(
+            key=str(key),
+            on_click=toggle_theme,
+            # style=THEME_TOGGLE_STYLE,
+        ):
+            with me.box(
+                style=me.Style(
+                    display="flex",
+                    flex_direction="row",
+                    gap=5,
+                    align_items="center",
+                ),
+            ):
+                me.icon(
+                    "light_mode" if me.theme_brightness() == "dark" else "dark_mode"
+                )
+                me.text(
+                    "Light mode" if me.theme_brightness() == "dark" else "Dark mode"
+                )
+
+
+MENU_BOTTOM = me.Style(
+    display="flex",
+    flex_direction="column",
+    position="absolute",
+    bottom=8,
+    align_content="left",
+)
