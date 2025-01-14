@@ -32,6 +32,7 @@ def on_click_change_name(e: me.ClickEvent):  # pylint: disable=unused-argument
     state = me.state(PageState)
     app_state = me.state(AppState)
     app_state.name = state.temp_name
+    app_state.greeting = ""  # reset greeting
     yield
 
 def home_page_content(app_state: me.state):

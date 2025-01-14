@@ -21,3 +21,4 @@ class AppState:
     sidenav_open: bool = False
 
     name: str = "no name"
+    greeting: str = ""

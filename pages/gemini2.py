@@ -23,25 +23,12 @@ from google.genai.types import (
 
 from components.header import header
 from set_up.model_setup import ModelSetup
+from state.state import AppState
 
-# def init_config():
-#     """ Initialize Config and ensure all parameters are set """
-#     config = Default()
-#     if not config.PROJECT_ID:
-#         raise ValueError("PROJECT_ID environment variable must be set.")
-#     return config
 
-# config = init_config()
-
-# print(f"initiating genai client with {config.PROJECT_ID} in {config.LOCATION}")
-# client = genai.Client(
-#     vertexai=True,
-#     project=config.PROJECT_ID,
-#     location=config.LOCATION,
-# )
 client, model_id = ModelSetup.init()
 MODEL_ID = model_id
-    
+
 
 @retry(
     wait=wait_exponential(multiplier=1, min=1, max=10),  # Exponential backoff (1s, 2s, 4s... up to 10s)
@@ -51,6 +38,11 @@ MODEL_ID = model_id
 )
 def say_something_nice(name: str) -> str:
     """Says something nice about a given name using Gemini."""
+    
+    app_state = me.state(AppState)
+    if app_state.greeting:
+        return app_state.greeting
+
     try:
         response = client.models.generate_content(
             model=MODEL_ID,
@@ -59,6 +51,7 @@ def say_something_nice(name: str) -> str:
                 response_modalities=["TEXT"],
             ),
         )
+        app_state.greeting = response.text
         print(f"success! {response.text}")
         return response.text
     except Exception as e:
@@ -66,6 +59,13 @@ def say_something_nice(name: str) -> str:
         raise  # Re-raise the exception for tenacity to handle
 
     return "oops, couldn't be nice" # this line is unreachable now
+
+
+def clear_greeting_and_refresh(e: me.ClickEvent):  # pylint: disable=unused-argument
+    """Clears the greeting and refreshes the greeting"""
+    app_state = me.state(AppState)
+    app_state.greeting = None
+    say_something_nice(app_state.name)
 
 
 def gemini_page_content(app_state: me.state):
@@ -96,7 +96,10 @@ def gemini_page_content(app_state: me.state):
             ):
                 header("Gemini 2.0 Flash", "auto_awesome")
 
-                me.text(f"Hello, {app_state.name}!")
+                with me.box(
+                    on_click=clear_greeting_and_refresh,
+                ):
+                    me.text(f"Hello, {app_state.name}!")
 
                 me.box(style=me.Style(height=16))
 
