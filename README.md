@@ -50,8 +50,6 @@ uv pip install -r requirements.txt
 
 ## Mesop scaffold app
 
-### Prerequisites
-
 
 ### Start the app
 
@@ -64,7 +62,7 @@ mesop main.py
 
 ## Enable the Gemini Page
 
-This scaffold comes with two pages enabled, and a third page that uses Gemini, is commented out. To use it, you'll have to set a Google Cloud Project
+This scaffold comes with two pages enabled, and a third page that uses Gemini, is commented out. To use it, you'll have to set a Google Cloud Project.
 
 ### Create an .env file
 
@@ -83,13 +81,13 @@ Your GCP Project ID can be obtained via `gcloud config get project`
 In `main.py`, uncomment:
 
 * line 21, `#from pages.gemini2 import gemini_page_content`
-* lines 51-60, the mesop page definition for the Gemini page
+* lines 51-60, the mesop page definition for the Gemini page.
 
-In `components/side_nav.py`, uncomment the entry in the `page_json` list 
+In `components/side_nav.py`, uncomment the entry in the `page_json` list. This will render the page in the side navigation menu.
 
-* line 27, `{"display": "Gemini", "icon": "auto_awesome", "route": "/gemini"},``
+* line 27, `{"display": "Gemini", "icon": "auto_awesome", "route": "/gemini"},`
 
 
 # Disclaimer
 
-This is not an official Google project
+This is not an official Google project.
