@@ -11,22 +11,22 @@ This is an example of a multi-page Mesop UX application, where:
 
 ![](./assets/example.gif)
 
-## Open in Project IDX
+## Open in Firebase Studio (nee Project IDX)
 
-Project IDX is an entirely web-based, integrated development environment. IDX can help you build and deploy applications in various tech stacks. To open this project in IDX, select the button below.
+Firebase Studio is an entirely web-based, integrated development environment. Firebase Studio can help you build and deploy applications in various tech stacks. To open this project in Firebase Studio, select the button below.
 
-<a href="https://idx.google.com/new?template=https%3A%2F%2Fgithub.com%2Fghchinoy%2Fstudio-scaffold">
+<a href="https://studio.firebase.google.com/new?template=https%3A%2F%2Fgithub.com%2Fghchinoy%2Fstudio-scaffold">
   <picture>
     <source
       media="(prefers-color-scheme: dark)"
-      srcset="https://cdn.idx.dev/btn/open_dark_32@2x.png">
+      srcset="https://cdn.firebasestudio.dev/btn/open_dark_32@2x.png">
     <source
       media="(prefers-color-scheme: light)"
-      srcset="https://cdn.idx.dev/btn/open_light_32@2x.png">
+      srcset="https://cdn.firebasestudio.dev/btn/open_light_32@2x.png">
     <img
       height="32"
-      alt="Open in IDX"
-      src="https://cdn.idx.dev/btn/open_purple_32@2x.png">
+      alt="Open in Firebase Studio"
+      src="https://cdn.firebasestudio.dev/btn/open_purple_32@2x.png">
   </picture>
 </a>
 
