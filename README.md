@@ -40,9 +40,9 @@ Using [uv](https://github.com/astral-sh/uv):
 
 ```
 # create a virtual environment
-uv venv venv
+uv sync
 # activate the virtual environment
-. venv/bin/activate
+source .venv/bin/activate
 # install the requirements
 uv pip install -r requirements.txt
 ```
